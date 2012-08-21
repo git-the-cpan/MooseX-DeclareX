@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::protected;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::protected::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::protected::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::protected::VERSION   = '0.002';
 }
 
 use Moose;
@@ -28,7 +28,7 @@ package MooseX::DeclareX::Plugin::protected::Role;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::protected::Role::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::protected::Role::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::protected::Role::VERSION   = '0.002';
 }
 
 use Moose::Role;
@@ -47,7 +47,7 @@ package MooseX::DeclareX::Plugin::protected::Parser;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::protected::Parser::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::protected::Parser::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::protected::Parser::VERSION   = '0.002';
 }
 
 use Moose;

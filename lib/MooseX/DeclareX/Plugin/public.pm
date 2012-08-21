@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::public;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::public::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::public::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::public::VERSION   = '0.002';
 }
 
 use Moose;
@@ -26,7 +26,7 @@ package MooseX::DeclareX::Plugin::public::Role;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::public::Role::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::public::Role::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::public::Role::VERSION   = '0.002';
 }
 
 use Moose::Role;
@@ -44,7 +44,7 @@ package MooseX::DeclareX::Plugin::public::Parser;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::public::Parser::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::public::Parser::VERSION   = '0.001';
+	$MooseX::DeclareX::Plugin::public::Parser::VERSION   = '0.002';
 }
 
 use Moose;

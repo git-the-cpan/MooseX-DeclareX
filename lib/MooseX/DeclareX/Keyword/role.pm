@@ -2,7 +2,7 @@ package MooseX::DeclareX::Keyword::role;
 
 BEGIN {
 	$MooseX::DeclareX::Keyword::role::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Keyword::role::VERSION   = '0.001';
+	$MooseX::DeclareX::Keyword::role::VERSION   = '0.002';
 }
 
 require MooseX::Declare;

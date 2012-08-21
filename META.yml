@@ -38,10 +38,11 @@ requires:
   MooseX::Method::Signatures: 0
   MooseX::Privacy: 0
   Sub::Install: 0
+  Throwable::Error: 0
   TryCatch: 0
   perl: 5.10.0
 resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX
   homepage: https://metacpan.org/release/MooseX-DeclareX
   license: http://dev.perl.org/licenses/
-version: 0.001
+version: 0.002

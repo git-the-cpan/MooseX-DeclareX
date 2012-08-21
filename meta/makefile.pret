@@ -17,6 +17,7 @@
 	requires          p`MooseX::Method::Signatures`;
 	requires          p`MooseX::Privacy`;
 	requires          p`Sub::Install`;
+	requires          p`Throwable::Error`;
 	requires          p`TryCatch`;
 	test_requires     p`Test::Exception`;
 	test_requires     p`Test::More 0.61`.
