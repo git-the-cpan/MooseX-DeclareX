@@ -1,0 +1,251 @@
+NAME
+    MooseX::DeclareX - more sugar for MooseX::Declare
+
+SYNOPSIS
+      use 5.010;
+      use MooseX::DeclareX
+        keywords => [qw(class exception)],
+        plugins  => [qw(guard build preprocess)],
+        ;
+
+      class Banana;
+
+      exception BananaError
+      {
+        has origin => (
+          is       => 'rw',
+          isa      => 'Monkey',
+          required => 1,
+        );
+      }
+
+      class Monkey
+      {
+        has name => (
+          is       => 'rw',
+          isa      => 'Str',
+        );
+
+        build name {
+          state $i = 1;
+          return "Anonymous $i";
+        }  
+    
+        has bananas => (
+          is       => 'rw',
+          isa      => 'ArrayRef[Banana]',
+          traits   => ['Array'],
+          handles  => {
+            give_banana  => 'push',
+            eat_banana   => 'shift',
+            lose_bananas => 'clear',
+            got_bananas  => 'count',
+          },
+        );
+      
+        build bananas {
+          return [];
+        }
+    
+        guard eat_banana {
+          $self->got_bananas or BananaError->throw(
+            origin  => $self,
+            message => "We have no bananas today!",
+          );
+        }
+    
+        after lose_bananas {
+          $self->screech("Oh no!");
+        }
+
+        method screech (@strings) {
+          my $name = $self->name;
+          say "$name: $_" for @strings;
+        }  
+      }
+
+      class Monkey::Loud extends Monkey
+      {
+        preprocess screech (@strings) {
+          return map { uc($_) } @strings;
+        }
+      }
+
+      try {
+        my $bobo = Monkey::Loud->new;
+        $bobo->give_banana( Banana->new );
+        $bobo->lose_bananas;
+        $bobo->give_banana( Banana->new );
+        $bobo->eat_banana;
+        $bobo->eat_banana;
+      }
+      catch (BananaError $e) {
+        warn sprintf("%s: %s\n", ref $e, $e->message);
+      }
+
+DESCRIPTION
+    MooseX::DeclareX takes the declarative sugar of MooseX::Declare to the
+    next level. Some people already consider MooseX::Declare to be pretty
+    insane. If you're one of those people, then you're not going to like
+    this...
+
+  Keywords
+    "class", "role", "extends", "with", "is dirty", "is mutable", "clean".
+        Inherited from MooseX::Declare.
+
+    "method", "around", "before", "after", "override", "augment"
+        Inherited from MooseX::Method::Signatures.
+
+    "try", "catch"
+        Inherited from TryCatch.
+
+    "exception"
+        "exception Foo" is sugar for "class Foo extends Throwable::Error".
+        That is, it creates a class which is a subclass of Throwable::Error.
+
+    "build"
+        This is some sugar for creating builder methods. The following two
+        examples are roughly equivalent:
+
+                build fullname {
+                        join q( ), $self->firstname, $self->surname;
+                }
+
+                sub _build_fullname {
+                        my $self = shift;
+                        join q( ), $self->firstname, $self->surname;
+                }
+
+        However, "build" also performs a little housekeeping for you. If an
+        attribute does not exist with the same name as the builder, it will
+        create one for you (which will be read-only, with type constraint
+        "Any" unless "build" can detect a more specific type constraint from
+        the method's return signature). If the attribute already exists but
+        does not have a builder set, then it will set it.
+
+    "guard"
+        Simplifies a common usage pattern for "around". A guard protects a
+        method, preventing it from being called unless a condition evaluates
+        to true.
+
+                class Doorway
+                {
+                        method enter ($person)
+                        {
+                                ...
+                        }
+                }
+        
+                class Doorway::Protected
+                {
+                        has password => (is => 'ro', isa => 'Str');
+                
+                        guard enter ($person)
+                        {
+                                $person->knows( $self->password )
+                        }
+                }
+
+    "preprocess"
+        Another simplification for a common usage pattern for "around". Acts
+        much like "before", but can modify the parameters seen by the base
+        method. In fact, it must return the processed parameters as a list.
+
+                class Speaker
+                {
+                        method speak (@words) {
+                                say for @words;
+                        }
+                }
+        
+                class Speaker::Loud
+                {
+                        preprocess speak {
+                                return map { uc($_) } @_
+                        }
+                }
+
+    "postprocess"
+        Like "preprocess" but instead acts on the method's return value.
+
+    "public method", "protected method", "private method"
+        Provides method-level privacy. Sugar for MooseX::Privacy.
+
+    "is abstract"
+        Declares that a class cannot be instantiated.
+
+        Also allows the standard Moose "requires" function to work within
+        classes (it normally only works within roles).
+
+                class Shape is abstract {
+                        requires 'draw';
+                }
+        
+                class Circle extends Shape {
+                        method draw { ... }
+                }
+        
+                class Square extends Shape {
+                        # does not implement 'draw'
+                } # dies
+        
+                my $shape  = Shape->new;  # dies
+                my $circle = Circle->new; # succeeds
+
+        When a class requires a method, then subclasses are supposed to
+        provide that method. If the subclass itself is also abstract, then
+        it doesn't need to provide the required methods. (There's also a
+        little cheat: classes which are mutable may extend abstract classes
+        without implementing required methods. You should not do this
+        though.)
+
+  Export
+    You should indicate which features you are using:
+
+            use MooseX::DeclareX
+                    keywords => [qw(class role exception)],
+                    plugins  => [qw(guard build)];
+
+    What is the distinction between keywords and plugins? Keywords are the
+    words that declare class-like things. Plugins are the other bits, and
+    only work inside the class-like declarations.
+
+    Things inherited from MooseX::Declare and MooseX::Method::Signatures do
+    not need to be indicated; they are always loaded. Things inherited from
+    TryCatch do not need to be indicated; they are available outside class
+    declarations too.
+
+    If you don't specify a list of keywords, then the default list is:
+
+            [qw(class role exception)]
+
+    If you don't specify a list of plugins, then the default list is:
+
+            [qw(build guard)]
+
+    That is, there are certain pieces of functionality (method privacy,
+    abstract classes, etc) which are not available by default - they need to
+    be loaded explicitly!
+
+BUGS
+    Please report any bugs to
+    <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>.
+
+SEE ALSO
+    MooseX::Declare, MooseX::Method::Signatures, TryCatch, Throwable::Error,
+    MooseX::Privacy, MooseX::ABCD.
+
+AUTHOR
+    Toby Inkster <tobyink@cpan.org>.
+
+COPYRIGHT AND LICENCE
+    This software is copyright (c) 2012 by Toby Inkster.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
+DISCLAIMER OF WARRANTIES
+    THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
+    MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
+
