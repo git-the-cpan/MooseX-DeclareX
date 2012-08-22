@@ -7,9 +7,9 @@ SYNOPSIS
         keywords => [qw(class exception)],
         plugins  => [qw(guard build preprocess)],
         ;
-
+  
       class Banana;
-
+  
       exception BananaError
       {
         has origin => (
@@ -18,14 +18,14 @@ SYNOPSIS
           required => 1,
         );
       }
-
+  
       class Monkey
       {
         has name => (
           is       => 'rw',
           isa      => 'Str',
         );
-
+    
         build name {
           state $i = 1;
           return "Anonymous $i";
@@ -42,7 +42,7 @@ SYNOPSIS
             got_bananas  => 'count',
           },
         );
-      
+    
         build bananas {
           return [];
         }
@@ -63,14 +63,14 @@ SYNOPSIS
           say "$name: $_" for @strings;
         }  
       }
-
+  
       class Monkey::Loud extends Monkey
       {
         preprocess screech (@strings) {
           return map { uc($_) } @strings;
         }
       }
-
+  
       try {
         my $bobo = Monkey::Loud->new;
         $bobo->give_banana( Banana->new );
@@ -168,37 +168,6 @@ DESCRIPTION
     "postprocess"
         Like "preprocess" but instead acts on the method's return value.
 
-    "public method", "protected method", "private method"
-        Provides method-level privacy. Sugar for MooseX::Privacy.
-
-    "is abstract"
-        Declares that a class cannot be instantiated.
-
-        Also allows the standard Moose "requires" function to work within
-        classes (it normally only works within roles).
-
-                class Shape is abstract {
-                        requires 'draw';
-                }
-        
-                class Circle extends Shape {
-                        method draw { ... }
-                }
-        
-                class Square extends Shape {
-                        # does not implement 'draw'
-                } # dies
-        
-                my $shape  = Shape->new;  # dies
-                my $circle = Circle->new; # succeeds
-
-        When a class requires a method, then subclasses are supposed to
-        provide that method. If the subclass itself is also abstract, then
-        it doesn't need to provide the required methods. (There's also a
-        little cheat: classes which are mutable may extend abstract classes
-        without implementing required methods. You should not do this
-        though.)
-
   Export
     You should indicate which features you are using:
 
@@ -223,17 +192,20 @@ DESCRIPTION
 
             [qw(build guard)]
 
-    That is, there are certain pieces of functionality (method privacy,
-    abstract classes, etc) which are not available by default - they need to
-    be loaded explicitly!
+    That is, there are certain pieces of functionality which are not
+    available by default - they need to be loaded explicitly!
 
 BUGS
     Please report any bugs to
     <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>.
 
 SEE ALSO
-    MooseX::Declare, MooseX::Method::Signatures, TryCatch, Throwable::Error,
-    MooseX::Privacy, MooseX::ABCD.
+    MooseX::Declare, MooseX::Method::Signatures, TryCatch, Throwable::Error.
+
+    Additional keywords and plugins are available on CPAN:
+    MooseX::DeclareX::Plugin::abstract, MooseX::DeclareX::Privacy,
+    MooseX::DeclareX::Keyword::interface,
+    MooseX::DeclareX::Plugin::singleton.
 
 AUTHOR
     Toby Inkster <tobyink@cpan.org>.

@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::postprocess;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::postprocess::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::postprocess::VERSION   = '0.002';
+	$MooseX::DeclareX::Plugin::postprocess::VERSION   = '0.003';
 }
 
 use Moose;
@@ -39,7 +39,7 @@ package MooseX::DeclareX::Plugin::postprocess::MethodModifier;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::postprocess::MethodModifier::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::postprocess::MethodModifier::VERSION   = '0.002';
+	$MooseX::DeclareX::Plugin::postprocess::MethodModifier::VERSION   = '0.003';
 }
 
 use Moose;

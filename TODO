@@ -1,3 +1,1 @@
-Split method privacy into a separate distribution?
-Split abstract base classes into a separate distribution?
 Provide some mechanism for automatically dropping MooseX::Types libraries into declared classes.

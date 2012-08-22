@@ -11,11 +11,9 @@
 	requires          p`Moose`;
 	requires          p`Moose::Role`;
 	requires          p`Moose::Util`;
-	requires          p`MooseX::ABCD`;
 	requires          p`MooseX::Declare`;
 	requires          p`MooseX::Declare::Context::WithOptions::Patch::Extensible`;
 	requires          p`MooseX::Method::Signatures`;
-	requires          p`MooseX::Privacy`;
 	requires          p`Sub::Install`;
 	requires          p`Throwable::Error`;
 	requires          p`TryCatch`;

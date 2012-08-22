@@ -32,11 +32,9 @@ requires:
   Moose: 0
   Moose::Role: 0
   Moose::Util: 0
-  MooseX::ABCD: 0
   MooseX::Declare: 0
   MooseX::Declare::Context::WithOptions::Patch::Extensible: 0
   MooseX::Method::Signatures: 0
-  MooseX::Privacy: 0
   Sub::Install: 0
   Throwable::Error: 0
   TryCatch: 0
@@ -45,4 +43,4 @@ resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX
   homepage: https://metacpan.org/release/MooseX-DeclareX
   license: http://dev.perl.org/licenses/
-version: 0.002
+version: 0.003
