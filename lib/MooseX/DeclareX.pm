@@ -7,7 +7,7 @@ use utf8;
 
 BEGIN {
 	$MooseX::DeclareX::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::VERSION   = '0.003';
+	$MooseX::DeclareX::VERSION   = '0.004';
 }
 
 use constant DEFAULT_KEYWORDS => [qw(class role exception)];
@@ -21,9 +21,9 @@ use TryCatch 0;
 sub import
 {
 	my ($class, %args) = @_;
-	my $caller = ($args{into} ||= caller(0));
+	my $caller = caller(0);
 	
-	$_->setup_for($caller, provided_by => $class) for __PACKAGE__->_keywords(\%args);
+	$_->setup_for($caller, %args, provided_by => $class) for __PACKAGE__->_keywords(\%args);
 	
 	strict->import;
 	warnings->import;

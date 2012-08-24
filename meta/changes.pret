@@ -16,3 +16,9 @@
 		item "Split out abstract class functionality."^^Packaging;
 		item "Split out method privacy functionality."^^Packaging;
 	].
+
+`MooseX-DeclareX 0.004 cpan:TOBYINK`
+	issued  2012-08-24;
+	changeset [
+		item "Get MooseX::Declare relative-package-naming feature working. (The 'namespace' keyword is still not working.)"^^Bugfix;
+	].

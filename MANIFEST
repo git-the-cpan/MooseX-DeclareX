@@ -48,6 +48,7 @@ meta/doap.pret
 meta/makefile.pret
 README
 t/01basic.t
+t/02namespaces.t
 t/03build.t
 t/04exceptions.t
 t/05guards.t

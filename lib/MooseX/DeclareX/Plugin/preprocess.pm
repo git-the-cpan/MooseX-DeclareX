@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::preprocess;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::preprocess::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::preprocess::VERSION   = '0.003';
+	$MooseX::DeclareX::Plugin::preprocess::VERSION   = '0.004';
 }
 
 use Moose;
@@ -39,7 +39,7 @@ package MooseX::DeclareX::Plugin::preprocess::MethodModifier;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::preprocess::MethodModifier::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::preprocess::MethodModifier::VERSION   = '0.003';
+	$MooseX::DeclareX::Plugin::preprocess::MethodModifier::VERSION   = '0.004';
 }
 
 use Moose;
