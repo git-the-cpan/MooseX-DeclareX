@@ -168,6 +168,10 @@ DESCRIPTION
     "postprocess"
         Like "preprocess" but instead acts on the method's return value.
 
+    "read_only", "read_write", "true", "false"
+        Useful constants when defining Moose attributes. These are enabled
+        by the std_constants plugin.
+
   Export
     You should indicate which features you are using:
 
@@ -190,17 +194,35 @@ DESCRIPTION
 
     If you don't specify a list of plugins, then the default list is:
 
-            [qw(build guard)]
+            [qw(build guard std_constants)]
 
     That is, there are certain pieces of functionality which are not
     available by default - they need to be loaded explicitly!
+
+  MooseX::Types
+    You can inject a bunch of MooseX::Types keywords into all classes quite
+    easily:
+
+      use MooseX::DeclareX
+        keywords => [qw(class role exception)],
+        plugins  => [qw(build std_constants)],
+        types    => [
+          -Moose,                 # use MooseX::Types::Moose -all
+          -URI => [qw(FileUri)],  # use MooseX::Types::URI qw(FileUri)
+                    'Foo::Types',           # use Foo::Types -all
+        ];
+
+    As per the example, any module which does not include an arrayref of
+    import parameters, gets "-all". A leading hyphen is interpreted as an
+    abbreviation for "MooseX::Types::".
 
 BUGS
     Please report any bugs to
     <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>.
 
 SEE ALSO
-    MooseX::Declare, MooseX::Method::Signatures, TryCatch, Throwable::Error.
+    MooseX::Declare, MooseX::Method::Signatures, TryCatch, Throwable::Error,
+    MooseX::Types.
 
     Additional keywords and plugins are available on CPAN:
     MooseX::DeclareX::Plugin::abstract, MooseX::DeclareX::Privacy,

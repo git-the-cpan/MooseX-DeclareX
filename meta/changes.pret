@@ -22,3 +22,11 @@
 	changeset [
 		item "Get MooseX::Declare relative-package-naming feature working. (The 'namespace' keyword is still not working.)"^^Bugfix;
 	].
+
+`MooseX-DeclareX 0.005 cpan:TOBYINK`
+	issued  2012-08-25;
+	label   "Preikestolen I";
+	changeset [
+		item "MooseX::Types injection into classes."^^Addition;
+		item "Some handy constants for attribute definition."^^Addition;
+	].

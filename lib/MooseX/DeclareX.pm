@@ -7,11 +7,11 @@ use utf8;
 
 BEGIN {
 	$MooseX::DeclareX::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::VERSION   = '0.004';
+	$MooseX::DeclareX::VERSION   = '0.005';
 }
 
 use constant DEFAULT_KEYWORDS => [qw(class role exception)];
-use constant DEFAULT_PLUGINS  => [qw(build guard)];
+use constant DEFAULT_PLUGINS  => [qw(build guard std_constants)];
 
 use Class::Load 0 qw(load_class);
 use Data::OptList 0;
@@ -22,7 +22,13 @@ sub import
 {
 	my ($class, %args) = @_;
 	my $caller = caller(0);
-	
+
+	if (my $types = delete $args{types})
+	{
+		$args{plugins} ||= DEFAULT_PLUGINS;
+		push @{ $args{plugins} }, types => $types;
+	}
+
 	$_->setup_for($caller, %args, provided_by => $class) for __PACKAGE__->_keywords(\%args);
 	
 	strict->import;
@@ -64,7 +70,7 @@ sub _keywords
 			$module2 =~ s/Plugin::concrete$/Plugin::abstract/;
 			load_class $module2;
 			
-			$module2->plugin_setup($kw);
+			$module2->plugin_setup($kw, $opts2);
 		}
 	}
 	
@@ -256,6 +262,11 @@ In fact, it must return the processed parameters as a list.
 
 Like C<preprocess> but instead acts on the method's return value.
 
+=item C<read_only>, C<read_write>, C<true>, C<false>
+
+Useful constants when defining Moose attributes. These are enabled by the
+std_constants plugin.
+
 =back
 
 =head2 Export
@@ -281,10 +292,28 @@ If you don't specify a list of keywords, then the default list is:
 
 If you don't specify a list of plugins, then the default list is:
 
-	[qw(build guard)]
+	[qw(build guard std_constants)]
 
 That is, there are certain pieces of functionality which are not available
 by default - they need to be loaded explicitly! 
+
+=head2 MooseX::Types
+
+You can inject a bunch of MooseX::Types keywords into all classes quite
+easily:
+
+  use MooseX::DeclareX
+    keywords => [qw(class role exception)],
+    plugins  => [qw(build std_constants)],
+    types    => [
+      -Moose,                 # use MooseX::Types::Moose -all
+      -URI => [qw(FileUri)],  # use MooseX::Types::URI qw(FileUri)
+		'Foo::Types',           # use Foo::Types -all
+    ];
+
+As per the example, any module which does not include an arrayref of import
+parameters, gets "-all". A leading hyphen is interpreted as an abbreviation
+for "MooseX::Types::".
 
 =head1 BUGS
 
@@ -294,7 +323,7 @@ L<http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>.
 =head1 SEE ALSO
 
 L<MooseX::Declare>, L<MooseX::Method::Signatures>, L<TryCatch>,
-L<Throwable::Error>.
+L<Throwable::Error>, L<MooseX::Types>.
 
 Additional keywords and plugins are available on CPAN:
 L<MooseX::DeclareX::Plugin::abstract>,

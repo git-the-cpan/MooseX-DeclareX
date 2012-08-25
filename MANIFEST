@@ -5,6 +5,7 @@ examples/guards.pl
 examples/having.pl
 examples/pre-post-process.pl
 examples/SYNOPSIS.pl
+examples/types.pl
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm
@@ -37,6 +38,8 @@ lib/MooseX/DeclareX/Plugin/guard.pm
 lib/MooseX/DeclareX/Plugin/having.pm
 lib/MooseX/DeclareX/Plugin/postprocess.pm
 lib/MooseX/DeclareX/Plugin/preprocess.pm
+lib/MooseX/DeclareX/Plugin/std_constants.pm
+lib/MooseX/DeclareX/Plugin/types.pm
 lib/MooseX/DeclareX/Registry.pm
 lib/MooseX/DeclareX/RegistryUsing.pm
 LICENSE
@@ -54,5 +57,5 @@ t/04exceptions.t
 t/05guards.t
 t/06having.t
 t/07pre-post-process.t
-TODO
+t/08types.t
 SIGNATURE                                Public-key signature (added by MakeMaker)

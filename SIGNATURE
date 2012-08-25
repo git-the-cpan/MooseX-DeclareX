@@ -14,19 +14,19 @@ not run its Makefile.PL or Build.PL.
 -----BEGIN PGP SIGNED MESSAGE-----
 Hash: SHA1
 
-SHA1 94f76c4212249c0ccf47a3fefecee012ad7eba53 Changes
+SHA1 20bb724ca2f0bdcc9c69eab25bd1b1ecf7d5e19b Changes
 SHA1 cc087c3dd6e1b519c680e68cd0231735a68300a0 LICENSE
-SHA1 f86526e4c4172a647f5f4a374d6ac4f11c20cf04 MANIFEST
-SHA1 5405b4cfe3bf3ef9f34744c5035f792ac319a152 META.yml
+SHA1 5a212ba4482cb0d6fd0266b0df56052efc28dcc8 MANIFEST
+SHA1 d2ba5965458f0ff74f5e494ffad863c5851e2196 META.yml
 SHA1 da50d35f9bc21473691888031579fd3ad684e205 Makefile.PL
-SHA1 3c5648191fbc3980968c5fdbc06dd3334ea55028 README
-SHA1 f5dc19515bd3e7a7f26cbfb4d29b280f3fe68198 TODO
+SHA1 340cd0b6288cf7e18870184d0780be9e9554dfda README
 SHA1 c5c143e3c0721a098bc83d6b87c72c168a77aac2 examples/SYNOPSIS.pl
 SHA1 cc5c4e98576d3196c48b904724b71ce5569e4eda examples/build.pl
 SHA1 0b2b3e5016edffc912be2ba0944994c40498c3fc examples/exceptions.pl
 SHA1 ea1fe713f00d199520277d7ec00a055ff57ed370 examples/guards.pl
 SHA1 e7c902af7c9d7aefdeef0ace4400bc529bcc59fd examples/having.pl
 SHA1 e6fe409eda2e6f115174f46926a2c2164dd79782 examples/pre-post-process.pl
+SHA1 dd53e44e281386d3ab0f9080f63cdbc87c3b3669 examples/types.pl
 SHA1 06c410f05488c1612ed66b06d3a86b2580581e4a inc/Module/AutoInstall.pm
 SHA1 8a924add836b60fb23b25c8506d45945e02f42f4 inc/Module/Install.pm
 SHA1 61ab1dd37e33ddbe155907ce51df8a3e56ac8bbf inc/Module/Install/AutoInstall.pm
@@ -47,34 +47,37 @@ SHA1 0e0eed2e69d9583081868cf4f220068d0a018568 inc/Scalar/Util.pm
 SHA1 feb933cefe2e3762e8322bd6071a2499f3440da1 inc/YAML/Tiny.pm
 SHA1 8105c0510a773b56840995fb4dd2dc64fe9ddaee inc/unicore/Name.pm
 SHA1 36df501c7c9b73c282c5174ed54d8283b2f2cbf2 inc/utf8.pm
-SHA1 5473055db47d52a06a8f97aad22345cbad90c66f lib/MooseX/DeclareX.pm
-SHA1 03ab8de7247c7173c8f8ca6d8c8ada111483f9a5 lib/MooseX/DeclareX/Keyword/class.pm
-SHA1 aec8364d23ebbe6a21c7f29d4d3cc19374f130ce lib/MooseX/DeclareX/Keyword/exception.pm
-SHA1 c821cc1ccfacfd6f6077a3ec3a8e1159b7ceb6ea lib/MooseX/DeclareX/Keyword/namespace.pm
-SHA1 8ac05268145325d18821bfcc0b59f475d713398b lib/MooseX/DeclareX/Keyword/role.pm
-SHA1 3d60a03a892a12affea3c8f7343c2b95e2785c24 lib/MooseX/DeclareX/MethodPrefix.pm
-SHA1 cd72480bc069976f2532690d6b3e13fb80623b6a lib/MooseX/DeclareX/Plugin.pm
-SHA1 c8ad5fff5c89dde142f3f64b1ae952acb4daa6a6 lib/MooseX/DeclareX/Plugin/build.pm
-SHA1 e588baaef7bdf06b85e59f75588ac700b145ab78 lib/MooseX/DeclareX/Plugin/guard.pm
-SHA1 a9f3f821cd59b723f6ffa69ba851aa398c172213 lib/MooseX/DeclareX/Plugin/having.pm
-SHA1 38fbad5fe711d61c6eaad12b7a8ecd1afa3772cf lib/MooseX/DeclareX/Plugin/postprocess.pm
-SHA1 229820cb162076b1d761f04ec83f6050f09b0e12 lib/MooseX/DeclareX/Plugin/preprocess.pm
-SHA1 78f6366c35f96ba89e2f13bb71bd976bcedf9ee8 lib/MooseX/DeclareX/Registry.pm
-SHA1 e1e4a4f0107f578a74cc8cdd46cc4d0d85df407f lib/MooseX/DeclareX/RegistryUsing.pm
-SHA1 80b41161a19ab01b0abd3989c4f6d3a8cb5d48ff meta/changes.pret
+SHA1 0769484e59ea82e24de0f26b116a19c483282c77 lib/MooseX/DeclareX.pm
+SHA1 1f1dc2711785ef88d8e35a07cce85184caf93682 lib/MooseX/DeclareX/Keyword/class.pm
+SHA1 95aa8d9f3fa50f6bfa1bb6a7b24edfe910718fa4 lib/MooseX/DeclareX/Keyword/exception.pm
+SHA1 90573bf30990399346c77296ae4264b8f6600446 lib/MooseX/DeclareX/Keyword/namespace.pm
+SHA1 3e97f1c0576300abf4d5cd9bc0b73450113128d9 lib/MooseX/DeclareX/Keyword/role.pm
+SHA1 0bfb15651d2f8a32fa379574d21e9aaf11e76102 lib/MooseX/DeclareX/MethodPrefix.pm
+SHA1 8e07630616c2772abaa7faf18a94bdb149360bad lib/MooseX/DeclareX/Plugin.pm
+SHA1 50cf351acc4c8172bb31f74f90e537ec598758f9 lib/MooseX/DeclareX/Plugin/build.pm
+SHA1 ee2368a09f37f31e9571a45235f614a085f2788b lib/MooseX/DeclareX/Plugin/guard.pm
+SHA1 5b233827c1e93287dfcb79dcabe0155fad0f96c5 lib/MooseX/DeclareX/Plugin/having.pm
+SHA1 ae12174c9b929c459493087ffe0e8abcd6ecf70e lib/MooseX/DeclareX/Plugin/postprocess.pm
+SHA1 c69b1f0dcb8fa4a81b3e453d941fe6ec449393db lib/MooseX/DeclareX/Plugin/preprocess.pm
+SHA1 0cf4c4bb0d39d497735d16b860cd1f577cb6fd97 lib/MooseX/DeclareX/Plugin/std_constants.pm
+SHA1 5a3084cbddbb3ec9a288d86e359b17096e6521b7 lib/MooseX/DeclareX/Plugin/types.pm
+SHA1 9f2da57be0cc3d370bc5dd42eb4f87b969e1de3a lib/MooseX/DeclareX/Registry.pm
+SHA1 eb9ce528b618c3938c21e5dc28e9fcb1a1d812c3 lib/MooseX/DeclareX/RegistryUsing.pm
+SHA1 7d20d6baf656eb4521f0e4c643b82870b8447ef4 meta/changes.pret
 SHA1 9dc821cf61e9a57aab432b40fcb1db3aabad0b6b meta/doap.pret
 SHA1 d79ced85b0d1ea8f000df3d283c70d02d9028ec1 meta/makefile.pret
 SHA1 9668b5e0a5e648899e6882d04ca53ba44a22b18b t/01basic.t
 SHA1 a6d2a686b6e60a64bd8feb858e0e5df73fa0d355 t/02namespaces.t
 SHA1 62bbcf44112ea21b059fbaf8e0f6037f9e6d9e6b t/03build.t
 SHA1 760d80526d339305f1036f98b6bfc09c185e4ef3 t/04exceptions.t
-SHA1 60b0f791b7da49c72e13b9eab6050b959606ccd5 t/05guards.t
-SHA1 83e760a4c89e7de68153f455af627183be7e4f5a t/06having.t
-SHA1 7a9c9c7992965e323bd982033bf2b7b6278537ed t/07pre-post-process.t
+SHA1 b36469a5d1a1e3358b1b4ec9ccfa67ca0c7e5023 t/05guards.t
+SHA1 defa9bd083e539c53b09613268439337d57758be t/06having.t
+SHA1 ea8cae4f8fd0892cf4bf018a6a438bcd2dcf66ad t/07pre-post-process.t
+SHA1 42fada5cd80ac2bc21ccdc94655b96c400062842 t/08types.t
 -----BEGIN PGP SIGNATURE-----
 Version: GnuPG v1.4.10 (GNU/Linux)
 
-iEYEARECAAYFAlA3VlsACgkQzr+BKGoqfTl6SwCgmLzHlb7qHx17FGcKhaoJjj5t
-VzcAn23HDrqNiUd5dZedKF8Y4aCY3KBa
-=8Dmp
+iEYEARECAAYFAlA5QdUACgkQzr+BKGoqfTkFbwCgk9izNEoum7JLvn67xmNz2vIh
+0cIAoINXBxMq2Ca5jbSTAdrtUWDikVKD
+=W1ed
 -----END PGP SIGNATURE-----

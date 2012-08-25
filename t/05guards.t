@@ -1,9 +1,9 @@
 use Test::More tests => 3;
-use MooseX::DeclareX plugins => [qw(guard)];
+use MooseX::DeclareX plugins => [qw(guard std_constants)];
 
 class Monkey
 {
-	has sleeping => (is => 'rw', isa => 'Bool', required => 1);
+	has sleeping => (is => read_write, isa => 'Bool', required => true);
 	
 	method screech ($sound) {
 		$sound . "!";

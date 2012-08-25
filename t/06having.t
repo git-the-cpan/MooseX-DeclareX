@@ -2,11 +2,11 @@
 # I'm not sure the 'having' plugin is even a good idea.
 
 use Test::More tests => 1;
-use MooseX::DeclareX plugins => [qw(having)];
+use MooseX::DeclareX plugins => [qw(having std_constants)];
 
 class Monkey having name
 {
-	has sleeping => (is => 'rw', isa => 'Bool', required => 1);
+	has sleeping => (is => read_write, isa => 'Bool', required => true);
 	method screech ($sound) {
 		return $self->name . q[: ] . $sound;
 	}

@@ -1,9 +1,9 @@
 use Test::More tests => 1;
-use MooseX::DeclareX plugins => [qw(preprocess postprocess)];
+use MooseX::DeclareX plugins => [qw(preprocess postprocess std_constants)];
 
 class Joiner
 {
-	has separator => (is => 'rw', isa => 'Str', required => 1);
+	has separator => (is => read_write, isa => 'Str', required => true);
 	
 	method go (@strings) {
 		join $self->separator => @strings;
