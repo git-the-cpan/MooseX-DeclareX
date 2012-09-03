@@ -2,7 +2,7 @@ package MooseX::DeclareX::Keyword::exception;
 
 BEGIN {
 	$MooseX::DeclareX::Keyword::exception::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Keyword::exception::VERSION   = '0.005';
+	$MooseX::DeclareX::Keyword::exception::VERSION   = '0.006';
 }
 
 require MooseX::Declare;

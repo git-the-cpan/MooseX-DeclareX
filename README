@@ -5,25 +5,25 @@ SYNOPSIS
       use 5.010;
       use MooseX::DeclareX
         keywords => [qw(class exception)],
-        plugins  => [qw(guard build preprocess)],
-        ;
+        plugins  => [qw(guard build preprocess std_constants)],
+        types    => [ -Moose ];
   
       class Banana;
   
       exception BananaError
       {
         has origin => (
-          is       => 'rw',
-          isa      => 'Monkey',
-          required => 1,
+          is       => read_write,
+          isa      => Object,
+          required => true,
         );
       }
   
       class Monkey
       {
         has name => (
-          is       => 'rw',
-          isa      => 'Str',
+          is       => read_write,
+          isa      => Str,
         );
     
         build name {
@@ -32,8 +32,8 @@ SYNOPSIS
         }  
     
         has bananas => (
-          is       => 'rw',
-          isa      => 'ArrayRef[Banana]',
+          is       => read_write,
+          isa      => ArrayRef[ Object ],
           traits   => ['Array'],
           handles  => {
             give_banana  => 'push',
@@ -107,14 +107,14 @@ DESCRIPTION
         This is some sugar for creating builder methods. The following two
         examples are roughly equivalent:
 
-                build fullname {
-                        join q( ), $self->firstname, $self->surname;
-                }
+          build fullname {
+            join q( ), $self->firstname, $self->surname;
+          }
 
-                sub _build_fullname {
-                        my $self = shift;
-                        join q( ), $self->firstname, $self->surname;
-                }
+          sub _build_fullname {
+            my $self = shift;
+            join q( ), $self->firstname, $self->surname;
+          }
 
         However, "build" also performs a little housekeeping for you. If an
         attribute does not exist with the same name as the builder, it will
@@ -128,42 +128,42 @@ DESCRIPTION
         method, preventing it from being called unless a condition evaluates
         to true.
 
-                class Doorway
-                {
-                        method enter ($person)
-                        {
-                                ...
-                        }
-                }
-        
-                class Doorway::Protected
-                {
-                        has password => (is => 'ro', isa => 'Str');
-                
-                        guard enter ($person)
-                        {
-                                $person->knows( $self->password )
-                        }
-                }
+          class Doorway
+          {
+            method enter ($person)
+            {
+              ...
+            }
+          }
+  
+          class Doorway::Protected
+          {
+            has password => (is => 'ro', isa => 'Str');
+    
+            guard enter ($person)
+            {
+              $person->knows( $self->password )
+            }
+          }
 
     "preprocess"
         Another simplification for a common usage pattern for "around". Acts
         much like "before", but can modify the parameters seen by the base
         method. In fact, it must return the processed parameters as a list.
 
-                class Speaker
-                {
-                        method speak (@words) {
-                                say for @words;
-                        }
-                }
-        
-                class Speaker::Loud
-                {
-                        preprocess speak {
-                                return map { uc($_) } @_
-                        }
-                }
+          class Speaker
+          {
+            method speak (@words) {
+              say for @words;
+            }
+          }
+  
+          class Speaker::Loud
+          {
+            preprocess speak {
+              return map { uc($_) } @_
+            }
+          }
 
     "postprocess"
         Like "preprocess" but instead acts on the method's return value.
@@ -175,9 +175,9 @@ DESCRIPTION
   Export
     You should indicate which features you are using:
 
-            use MooseX::DeclareX
-                    keywords => [qw(class role exception)],
-                    plugins  => [qw(guard build)];
+      use MooseX::DeclareX
+        keywords => [qw(class role exception)],
+        plugins  => [qw(guard build)];
 
     What is the distinction between keywords and plugins? Keywords are the
     words that declare class-like things. Plugins are the other bits, and
@@ -190,11 +190,11 @@ DESCRIPTION
 
     If you don't specify a list of keywords, then the default list is:
 
-            [qw(class role exception)]
+      [qw(class role exception)]
 
     If you don't specify a list of plugins, then the default list is:
 
-            [qw(build guard std_constants)]
+      [qw(build guard std_constants)]
 
     That is, there are certain pieces of functionality which are not
     available by default - they need to be loaded explicitly!
@@ -209,12 +209,29 @@ DESCRIPTION
         types    => [
           -Moose,                 # use MooseX::Types::Moose -all
           -URI => [qw(FileUri)],  # use MooseX::Types::URI qw(FileUri)
-                    'Foo::Types',           # use Foo::Types -all
+          'Foo::Types',           # use Foo::Types -all
         ];
 
     As per the example, any module which does not include an arrayref of
     import parameters, gets "-all". A leading hyphen is interpreted as an
     abbreviation for "MooseX::Types::".
+
+  Additional Import Syntactic Sugar
+    You can specify a list of additional modules that will always be
+    imported "inside" your class/role definitions.
+
+      use MooseX::DeclareX
+        keywords => [qw(class role exception)],
+        plugins  => [qw(build guard std_constants)],
+        imports  => [
+          'MooseX::ClassAttribute',
+          'Path::Class'      => [qw( file dir )],
+          'Perl6::Junction'  => [qw( any all none )],
+          'List::Util'       => [qw( first reduce )],
+        ];
+
+    In fact, this is just a minor generalisation of the MooseX::Types
+    feature.
 
 BUGS
     Please report any bugs to

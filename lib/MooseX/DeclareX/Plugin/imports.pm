@@ -1,8 +1,8 @@
-package MooseX::DeclareX::Plugin::types;
+package MooseX::DeclareX::Plugin::imports;
 
 BEGIN {
-	$MooseX::DeclareX::Plugin::types::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::types::VERSION   = '0.006';
+	$MooseX::DeclareX::Plugin::imports::AUTHORITY = 'cpan:TOBYINK';
+	$MooseX::DeclareX::Plugin::imports::VERSION   = '0.006';
 }
 
 use Moose;
@@ -11,17 +11,21 @@ with 'MooseX::DeclareX::Plugin';
 use MooseX::Declare ();
 use Moose::Util ();
 use Data::OptList;
+use Data::Dumper;
 
 sub plugin_setup
 {
 	my ($class, $kw, $opt) = @_;
 	$opt = Data::OptList::mkopt($opt);
 	
+	local $Data::Dumper::Terse  = 1;
+	local $Data::Dumper::Indent = 0;
 	my @codeparts = map {
 		my ($module, $terms) = @$_;
-		$module =~ s/^-/MooseX::Types::/;
-		$terms ||= ['-all'];
-		sprintf('use %s qw(%s)', $module, join q[ ], @$terms);
+		$terms = [] unless defined $terms;
+		confess "parameters for $module must be an arrayref"
+			unless ref $terms eq 'ARRAY';
+		sprintf('use %s @{%s}', $module, Dumper $terms);
 	} @$opt;
 
 	$kw->meta->add_after_method_modifier(

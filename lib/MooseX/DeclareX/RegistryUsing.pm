@@ -2,7 +2,7 @@ package MooseX::DeclareX::RegistryUsing;
 
 BEGIN {
 	$MooseX::DeclareX::RegistryUsing::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::RegistryUsing::VERSION   = '0.005';
+	$MooseX::DeclareX::RegistryUsing::VERSION   = '0.006';
 }
 
 use Moose::Role;

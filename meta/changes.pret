@@ -25,8 +25,14 @@
 
 `MooseX-DeclareX 0.005 cpan:TOBYINK`
 	issued  2012-08-25;
-	label   "Preikestolen I";
+	label   "Preikestolen";
 	changeset [
 		item "MooseX::Types injection into classes."^^Addition;
 		item "Some handy constants for attribute definition."^^Addition;
+	].
+
+`MooseX-DeclareX 0.006 cpan:TOBYINK`
+	issued  2012-09-03;
+	changeset [
+		item "Inject imports into classes."^^Addition;
 	].

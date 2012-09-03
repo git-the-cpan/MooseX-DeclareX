@@ -3,6 +3,7 @@ examples/build.pl
 examples/exceptions.pl
 examples/guards.pl
 examples/having.pl
+examples/imports.pl
 examples/pre-post-process.pl
 examples/SYNOPSIS.pl
 examples/types.pl
@@ -36,6 +37,7 @@ lib/MooseX/DeclareX/Plugin.pm
 lib/MooseX/DeclareX/Plugin/build.pm
 lib/MooseX/DeclareX/Plugin/guard.pm
 lib/MooseX/DeclareX/Plugin/having.pm
+lib/MooseX/DeclareX/Plugin/imports.pm
 lib/MooseX/DeclareX/Plugin/postprocess.pm
 lib/MooseX/DeclareX/Plugin/preprocess.pm
 lib/MooseX/DeclareX/Plugin/std_constants.pm
