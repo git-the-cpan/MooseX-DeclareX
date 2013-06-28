@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::std_constants;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::std_constants::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::std_constants::VERSION   = '0.006';
+	$MooseX::DeclareX::Plugin::std_constants::VERSION   = '0.007';
 }
 
 use Moose;

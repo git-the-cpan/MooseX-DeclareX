@@ -36,3 +36,10 @@
 	changeset [
 		item "Inject imports into classes."^^Addition;
 	].
+
+`MooseX-DeclareX 0.007 cpan:TOBYINK`
+	issued  2013-06-28;
+	changeset [
+		item "Fix hash key randomization issues."^^Update;
+		item "Remove use of smart match."^^Update;
+	].

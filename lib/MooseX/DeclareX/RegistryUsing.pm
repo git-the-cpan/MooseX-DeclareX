@@ -2,7 +2,7 @@ package MooseX::DeclareX::RegistryUsing;
 
 BEGIN {
 	$MooseX::DeclareX::RegistryUsing::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::RegistryUsing::VERSION   = '0.006';
+	$MooseX::DeclareX::RegistryUsing::VERSION   = '0.007';
 }
 
 use Moose::Role;
@@ -14,7 +14,7 @@ around allowed_option_names => sub
 	my $self    = shift;
 	
 	my $allowed = $self->$orig(@_);
-	push @$allowed, keys %MooseX::DeclareX::Registry::context_allow_options;
+	push @$allowed, sort keys %MooseX::DeclareX::Registry::context_allow_options;
 	return $allowed;
 };
 

@@ -7,7 +7,7 @@ use utf8;
 
 BEGIN {
 	$MooseX::DeclareX::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::VERSION   = '0.006';
+	$MooseX::DeclareX::VERSION   = '0.007';
 }
 
 use constant DEFAULT_KEYWORDS => [qw(class role exception)];
@@ -64,11 +64,13 @@ sub _keywords
 		
 		foreach my $pair2 (@$plugins)
 		{
+			no warnings;
 			my ($class2, $opts2) = @$pair2;
-			next if $class2 ~~ [qw(
-				method before after around override augment
-				with is clean dirty mutable try catch
-			)];
+			next if $class2 =~ qr(
+				method | before | after | around | override | augment
+				| with | is | clean | dirty | mutable | try | catch
+			)x;
+			use warnings;
 			
 			my $module2 = join '::' => (qw[MooseX DeclareX Plugin], $class2);
 			$module2 =~ s/Plugin::concrete$/Plugin::abstract/;
@@ -171,6 +173,10 @@ MooseX::DeclareX - more sugar for MooseX::Declare
   catch (BananaError $e) {
     warn sprintf("%s: %s\n", ref $e, $e->message);
   }
+
+=head1 STATUS
+
+This is very experimental stuff. B<< YOU HAVE BEEN WARNED! >>
 
 =head1 DESCRIPTION
 

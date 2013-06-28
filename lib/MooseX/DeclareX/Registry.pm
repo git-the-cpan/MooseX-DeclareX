@@ -2,7 +2,7 @@ package MooseX::DeclareX::Registry;
 
 BEGIN {
 	$MooseX::DeclareX::Registry::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Registry::VERSION   = '0.006';
+	$MooseX::DeclareX::Registry::VERSION   = '0.007';
 }
 
 our %context_allow_options;
@@ -50,7 +50,7 @@ before add_optional_customizations => sub
 	my ($self, $ctx, $package) = @_;
 	
 	my %features = %{ $self->registered_features // {} };
-	foreach my $f (each %features)
+	foreach my $f (sort keys %features)
 	{
 		if (exists $ctx->options->{is}{$f})
 		{

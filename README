@@ -83,6 +83,9 @@ SYNOPSIS
         warn sprintf("%s: %s\n", ref $e, $e->message);
       }
 
+STATUS
+    This is very experimental stuff. YOU HAVE BEEN WARNED!
+
 DESCRIPTION
     MooseX::DeclareX takes the declarative sugar of MooseX::Declare to the
     next level. Some people already consider MooseX::Declare to be pretty
