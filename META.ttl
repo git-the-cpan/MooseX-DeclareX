@@ -64,6 +64,7 @@ dist:project
 	doap:release      dist:v_0-005;
 	doap:release      dist:v_0-006;
 	doap:release      dist:v_0-007;
+	doap:release      dist:v_0-008;
 	doap:shortdesc    "more sugar for MooseX::Declare".
 
 dist:v_0-001
@@ -171,6 +172,20 @@ dist:v_0-007
 	dcs:released-by   cpan:tobyink;
 	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/MooseX-DeclareX-0.007.tar.gz>;
 	doap:revision     "0.007"^^xsd:string.
+
+dist:v_0-008
+	a                 doap:Version;
+	dc:identifier     "MooseX-DeclareX-0.008"^^xsd:string;
+	dc:issued         "2013-07-03"^^xsd:date;
+	dcs:changeset     [
+		dcs:item [
+			a dcs:Bugfix;
+			rdfs:label "Get `has` handling to work properly for MooseX::DeclareX::MethodPrefix.";
+		];
+	];
+	dcs:released-by   cpan:tobyink;
+	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/MooseX-DeclareX-0.008.tar.gz>;
+	doap:revision     "0.008"^^xsd:string.
 
 cpan:tobyink
 	a                 foaf:Person;

@@ -2,7 +2,7 @@ package MooseX::DeclareX::Registry;
 
 BEGIN {
 	$MooseX::DeclareX::Registry::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Registry::VERSION   = '0.007';
+	$MooseX::DeclareX::Registry::VERSION   = '0.008';
 }
 
 our %context_allow_options;

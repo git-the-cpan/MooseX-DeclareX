@@ -6,6 +6,11 @@ Home page:    <https://metacpan.org/release/MooseX-DeclareX>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
+0.008  2013-07-03
+
+ - (Bugfix) Get `has` handling to work properly for
+   MooseX::DeclareX::MethodPrefix.
+
 0.007  2013-06-28
 
  - (Update) Fix hash key randomization issues.

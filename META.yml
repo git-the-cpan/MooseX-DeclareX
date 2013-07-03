@@ -43,4 +43,4 @@ resources:
   bugtracker: http://rt.cpan.org/Dist/Display.html?Queue=MooseX-DeclareX
   homepage: https://metacpan.org/release/MooseX-DeclareX
   license: http://dev.perl.org/licenses/
-version: 0.007
+version: 0.008

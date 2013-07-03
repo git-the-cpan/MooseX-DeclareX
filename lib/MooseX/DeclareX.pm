@@ -7,7 +7,7 @@ use utf8;
 
 BEGIN {
 	$MooseX::DeclareX::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::VERSION   = '0.007';
+	$MooseX::DeclareX::VERSION   = '0.008';
 }
 
 use constant DEFAULT_KEYWORDS => [qw(class role exception)];

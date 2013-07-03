@@ -2,7 +2,7 @@ package MooseX::DeclareX::MethodPrefix;
 
 BEGIN {
 	$MooseX::DeclareX::MethodPrefix::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::MethodPrefix::VERSION   = '0.007';
+	$MooseX::DeclareX::MethodPrefix::VERSION   = '0.008';
 }
 
 use Moose;
@@ -40,12 +40,8 @@ has class => (
 	required => 1,
 );
 
-has handle_has => (
-	is       => 'ro',
-	isa      => 'Bool',
-	default  => 0,
-);
- 
+sub handle_has { +return }
+
 sub BUILD
 {
 	my $self = shift;
@@ -103,16 +99,20 @@ sub parse
 	$self->skip_declarator;
 	$self->skipspace;
 
-	my $thing = $self->strip_name;
-	
-	if ($thing eq 'has' and $self->handle_has)
+	my $remaining = substr($self->get_linestr, $self->offset);
+
+	if ($remaining =~ m/^\s*has/s and defined $self->handle_has)
 	{
 		# THIS DOES NOT WORK!
+		my $handler = $self->handle_has;
+		$remaining =~ s/^\s*has/;$handler/;
 		my $line = $self->get_linestr;
-		$line =~ s/$kw/$kw\_has/;
+		substr($line, $self->offset) = $remaining;
 		$self->set_linestr($line);
 		return;
 	}
+
+	my $thing = $self->strip_name;
 	
 	confess "expected 'method', got '${thing}'"
 		unless $thing eq 'method';
