@@ -2,7 +2,7 @@ package MooseX::DeclareX::MethodPrefix;
 
 BEGIN {
 	$MooseX::DeclareX::MethodPrefix::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::MethodPrefix::VERSION   = '0.008';
+	$MooseX::DeclareX::MethodPrefix::VERSION   = '0.009';
 }
 
 use Moose;

@@ -93,20 +93,20 @@ DESCRIPTION
     this...
 
   Keywords
-    "class", "role", "extends", "with", "is dirty", "is mutable", "clean".
+    `class`, `role`, `extends`, `with`, `is dirty`, `is mutable`, `clean`.
         Inherited from MooseX::Declare.
 
-    "method", "around", "before", "after", "override", "augment"
+    `method`, `around`, `before`, `after`, `override`, `augment`
         Inherited from MooseX::Method::Signatures.
 
-    "try", "catch"
+    `try`, `catch`
         Inherited from TryCatch.
 
-    "exception"
-        "exception Foo" is sugar for "class Foo extends Throwable::Error".
+    `exception`
+        `exception Foo` is sugar for `class Foo extends Throwable::Error`.
         That is, it creates a class which is a subclass of Throwable::Error.
 
-    "build"
+    `build`
         This is some sugar for creating builder methods. The following two
         examples are roughly equivalent:
 
@@ -119,15 +119,15 @@ DESCRIPTION
             join q( ), $self->firstname, $self->surname;
           }
 
-        However, "build" also performs a little housekeeping for you. If an
+        However, `build` also performs a little housekeeping for you. If an
         attribute does not exist with the same name as the builder, it will
         create one for you (which will be read-only, with type constraint
-        "Any" unless "build" can detect a more specific type constraint from
+        "Any" unless `build` can detect a more specific type constraint from
         the method's return signature). If the attribute already exists but
         does not have a builder set, then it will set it.
 
-    "guard"
-        Simplifies a common usage pattern for "around". A guard protects a
+    `guard`
+        Simplifies a common usage pattern for `around`. A guard protects a
         method, preventing it from being called unless a condition evaluates
         to true.
 
@@ -149,9 +149,9 @@ DESCRIPTION
             }
           }
 
-    "preprocess"
-        Another simplification for a common usage pattern for "around". Acts
-        much like "before", but can modify the parameters seen by the base
+    `preprocess`
+        Another simplification for a common usage pattern for `around`. Acts
+        much like `before`, but can modify the parameters seen by the base
         method. In fact, it must return the processed parameters as a list.
 
           class Speaker
@@ -168,12 +168,12 @@ DESCRIPTION
             }
           }
 
-    "postprocess"
-        Like "preprocess" but instead acts on the method's return value.
+    `postprocess`
+        Like `preprocess` but instead acts on the method's return value.
 
-    "read_only", "read_write", "true", "false"
-        Useful constants when defining Moose attributes. These are enabled
-        by the std_constants plugin.
+    `read_only`, `read_write`, `true`, `false`
+        Useful constants when defining Moose attributes. These are enabled by
+        the std_constants plugin.
 
   Export
     You should indicate which features you are using:
@@ -183,8 +183,8 @@ DESCRIPTION
         plugins  => [qw(guard build)];
 
     What is the distinction between keywords and plugins? Keywords are the
-    words that declare class-like things. Plugins are the other bits, and
-    only work inside the class-like declarations.
+    words that declare class-like things. Plugins are the other bits, and only
+    work inside the class-like declarations.
 
     Things inherited from MooseX::Declare and MooseX::Method::Signatures do
     not need to be indicated; they are always loaded. Things inherited from
@@ -199,8 +199,8 @@ DESCRIPTION
 
       [qw(build guard std_constants)]
 
-    That is, there are certain pieces of functionality which are not
-    available by default - they need to be loaded explicitly!
+    That is, there are certain pieces of functionality which are not available
+    by default - they need to be loaded explicitly!
 
   MooseX::Types
     You can inject a bunch of MooseX::Types keywords into all classes quite
@@ -220,8 +220,8 @@ DESCRIPTION
     abbreviation for "MooseX::Types::".
 
   Additional Import Syntactic Sugar
-    You can specify a list of additional modules that will always be
-    imported "inside" your class/role definitions.
+    You can specify a list of additional modules that will always be imported
+    "inside" your class/role definitions.
 
       use MooseX::DeclareX
         keywords => [qw(class role exception)],
@@ -233,8 +233,7 @@ DESCRIPTION
           'List::Util'       => [qw( first reduce )],
         ];
 
-    In fact, this is just a minor generalisation of the MooseX::Types
-    feature.
+    In fact, this is just a minor generalisation of the MooseX::Types feature.
 
 BUGS
     Please report any bugs to
@@ -246,8 +245,7 @@ SEE ALSO
 
     Additional keywords and plugins are available on CPAN:
     MooseX::DeclareX::Plugin::abstract, MooseX::DeclareX::Privacy,
-    MooseX::DeclareX::Keyword::interface,
-    MooseX::DeclareX::Plugin::singleton.
+    MooseX::DeclareX::Keyword::interface, MooseX::DeclareX::Plugin::singleton.
 
 AUTHOR
     Toby Inkster <tobyink@cpan.org>.
@@ -255,8 +253,8 @@ AUTHOR
 COPYRIGHT AND LICENCE
     This software is copyright (c) 2012 by Toby Inkster.
 
-    This is free software; you can redistribute it and/or modify it under
-    the same terms as the Perl 5 programming language system itself.
+    This is free software; you can redistribute it and/or modify it under the
+    same terms as the Perl 5 programming language system itself.
 
 DISCLAIMER OF WARRANTIES
     THIS PACKAGE IS PROVIDED "AS IS" AND WITHOUT ANY EXPRESS OR IMPLIED

@@ -2,7 +2,7 @@ package MooseX::DeclareX::Plugin::imports;
 
 BEGIN {
 	$MooseX::DeclareX::Plugin::imports::AUTHORITY = 'cpan:TOBYINK';
-	$MooseX::DeclareX::Plugin::imports::VERSION   = '0.008';
+	$MooseX::DeclareX::Plugin::imports::VERSION   = '0.009';
 }
 
 use Moose;
